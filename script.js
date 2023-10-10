@@ -29,7 +29,7 @@ function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
-  const svgImagePath = `vehicles/${carFolder}/sprite.svg`;
+  const imagePath = `vehicles/${carFolder}/test.png`; // Update to the PNG image path
 
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
@@ -49,12 +49,29 @@ function loadCarData(carFolder) {
     })
     .then((carData) => {
       if (carData) {
-        // Create an Image object for the SVG image and load it
-        const carImage = new Image();
-        carImage.src = svgImagePath;
+        // Create an Image object for the PNG image and load it
+        const image = new Image();
 
-        // Return the loaded car data and image
-        return { ...carData, carImage };
+        // Handle the image load event
+        image.onload = () => {
+          // Display the loaded image on the canvas (replace 'canvas' with your canvas element)
+          const canvas = document.getElementById('canvas');
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(image, 0, 0);
+
+          log('Image loaded successfully.'); // Update the log message
+        };
+
+        // Handle any errors
+        image.onerror = (error) => {
+          log(`Error loading image: ${error}`); // Update the log message
+        };
+
+        // Set the image source to load the PNG image
+        image.src = imagePath;
+
+        // Return the loaded car data
+        return carData;
       } else {
         return null;
       }
@@ -66,12 +83,12 @@ function loadCarData(carFolder) {
 }
 
 // Load car data and start the game when the document is ready
-document.addEventListener("DOMContentLoaded", () => {
-  loadCarData("sports_001")
+document.addEventListener('DOMContentLoaded', () => {
+  loadCarData('sports_001') // Try with 'sports_001' or 'sedan_001'
     .then((carData) => {
       if (carData) {
         window.carData = carData;
-        log("Car data loaded successfully.");
+        log('Car data loaded successfully.');
         updateGameArea();
       }
     });
@@ -189,7 +206,7 @@ window.addEventListener("keydown", (e) => {
 });
 
 // Load initial car data (you can change the car folder as needed)
-loadCarData("sports_001");
+loadCarData("sedan_001");
 
 canvas.width = 800;
 canvas.height = 400;
