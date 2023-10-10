@@ -146,16 +146,12 @@ function loadCarImage(imagePath, carDimensions) {
       carHeight = carWidth / aspectRatio;
 
       // Calculate the scaling factor for width and height
-      const widthScaleFactor = (carDimensions.width / carWidth) * 100;
-      const heightScaleFactor = (carDimensions.height / carHeight) * 100;
+      const widthScaleFactor = carDimensions.width / carWidth * 100;
+      const heightScaleFactor = carDimensions.height / carHeight * 100;
 
       // Apply the scaling factors to the car's width and height
       carWidth *= widthScaleFactor;
       carHeight *= heightScaleFactor;
-
-      // Log car size and location once
-      log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
-      log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
 
       resolve();
     };
@@ -167,6 +163,10 @@ function loadCarImage(imagePath, carDimensions) {
 // Function to draw the car
 function drawCar() {
   ctx.drawImage(carImage, carX, canvas.height - carHeight, carWidth, carHeight);
+
+  // Log car size and location
+  log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
+  log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
 }
 
 // Function to update the game area
