@@ -112,7 +112,7 @@ function parseCarData(carInfo, powerband) {
       return [parseInt(rpm), parseFloat(torque)];
     });
 
-  return { ...carInfoData, powerband: powerbandData };
+  return { ...carInfoData, powerband: powerbandData, pngImageBase64: 'your_base64_string_here' };
 }
 
 // Function to calculate torque based on RPM and powerband
@@ -136,9 +136,13 @@ const carImage = new Image();
 // Function to load the car image
 function loadCarImage() {
   return new Promise((resolve, reject) => {
-    carImage.onload = resolve;
-    carImage.onerror = reject;
-    carImage.src = `data:image/png;base64,${carData.pngImageBase64}`;
+    if (carData && carData.pngImageBase64) {
+      carImage.onload = resolve;
+      carImage.onerror = reject;
+      carImage.src = `data:image/png;base64,${carData.pngImageBase64}`;
+    } else {
+      reject('carData or carData.pngImageBase64 is null');
+    }
   });
 }
 
