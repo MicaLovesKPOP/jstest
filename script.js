@@ -2,6 +2,8 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 // Car properties
+      carWidth = carImage.width;
+      carWidth = carImage.width;
 let carSpeed = 5;
 
 let carData = null; // Will store the currently selected car's data
@@ -155,8 +157,8 @@ function loadCarImage(imagePath) {
       log("Car Image Loaded");
       
       // Get the dimensions of the loaded image
-      let carWidth = carImage.width;
-      let carHeight = carImage.height;
+      carWidth = carImage.width;
+      carHeight = carImage.height;
 
       // Log car size in pixels
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
