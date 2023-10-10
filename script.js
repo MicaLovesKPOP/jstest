@@ -145,11 +145,18 @@ const carImage = new Image();
 function loadCarImage(imagePath) {
   return new Promise((resolve, reject) => {
     const carImage = new Image();
-    
+
     carImage.onload = () => {
       // Log that the image has been loaded
       log("Car Image Loaded");
-      
+
+      // Log the image dimensions
+      log(`Image Width: ${carImage.width}`);
+      log(`Image Height: ${carImage.height}`);
+
+      // Log the SVG content (you can log the entire SVG string)
+      log(`SVG Content: ${carImage.outerHTML}`);
+
       // Get the dimensions of the loaded image
       carWidth = carImage.width;
       carHeight = carImage.height;
@@ -168,15 +175,15 @@ function loadCarImage(imagePath) {
 
       // Log car size in pixels after scaling
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
-      
+
       resolve();
     };
-    
+
     carImage.onerror = () => {
       log("Error: Failed to load the SVG image.");
       reject();
     };
-    
+
     carImage.src = imagePath;
   });
 }
