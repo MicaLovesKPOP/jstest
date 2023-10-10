@@ -13,5 +13,3 @@ svgImage.onload = function () {
     // Once the SVG is loaded, draw it on the canvas
     ctx.drawImage(svgImage, 0, 0);
 };
-
-// You can specify the position (0, 0) where you want to draw the SVG on the canvas.
