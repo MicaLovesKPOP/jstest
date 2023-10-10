@@ -184,8 +184,6 @@ function drawCar() {
   const scaledCarX = carX * widthScaleFactor;
   const scaledCarY = (canvas.height - carHeight) * heightScaleFactor;
   ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
-}
-
 
   // Log car size and location only once
   if (!carInfoLogged) {
