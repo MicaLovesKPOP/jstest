@@ -199,7 +199,7 @@ function drawCar() {
   
   // Draw a red rectangle behind the car image
   ctx.fillStyle = "red";
-  ctx.fillRect(scaledCarX, scaledCarY, 100, 100);
+  ctx.fillRect(scaledCarX, scaledCarY, carWidth, carHeight);
 
   // Draw the car image on top of the red rectangle
   ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
