@@ -116,7 +116,15 @@ const carImage = new Image();
 // Function to load the car image
 function loadCarImage(imagePath) {
   return new Promise((resolve, reject) => {
-    carImage.onload = resolve;
+    carImage.onload = () => {
+      // Calculate the aspect ratio
+      const aspectRatio = carImage.width / carImage.height;
+
+      // Calculate the scaled height
+      carHeight = carWidth / aspectRatio;
+
+      resolve();
+    };
     carImage.onerror = reject;
     carImage.src = imagePath;
   });
