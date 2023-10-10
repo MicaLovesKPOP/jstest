@@ -233,6 +233,8 @@ function updateGameArea() {
 
     // Add more game logic as needed
   }
+  
+  console.log("Clearing canvas...");
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawCar();
