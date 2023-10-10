@@ -34,19 +34,17 @@ function loadCarData(carFolder) {
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
     fetch(powerbandPath).then((response) => response.text()),
-    fetch(svgImagePath).then((response) => response.text()),
+    fetch(svgImagePath).then((response) => response.blob()), // Fetch as a blob
   ])
-    .then(([carInfo, powerband, svgImage]) => {
-      // Parse carinfo.cfg, powerband.crv, and SVG image data here
+    .then(async ([carInfo, powerband, svgImageBlob]) => {
+      // Parse carinfo.cfg and powerband.crv data here
       const parsedCarData = parseCarData(carInfo, powerband);
 
       // Check that all data is available
-      if (parsedCarData && svgImage) {
-        const carImage = new Image();
-        carImage.src = `data:image/svg+xml,${encodeURIComponent(svgImage)}`;
-
-        // Return the loaded data and image
-        return { ...parsedCarData, carImage };
+      if (parsedCarData && svgImageBlob) {
+        // Convert the blob to a data URL and create an Image object
+        const svgImage = await blobToDataURL(svgImageBlob);
+        return { ...parsedCarData, svgImage };
       } else {
         log("Error loading car data: Some data is missing.");
         return null;
@@ -56,6 +54,17 @@ function loadCarData(carFolder) {
       log(`Error loading car data for ${carFolder}: ${error}`);
       return null;
     });
+}
+
+// Function to convert a blob to a data URL
+function blobToDataURL(blob) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      resolve(reader.result);
+    };
+    reader.readAsDataURL(blob);
+  });
 }
 
 // Load car data and start the game when the document is ready
