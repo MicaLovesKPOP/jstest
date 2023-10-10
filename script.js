@@ -14,6 +14,24 @@ let raceTime = 0;
 
 let enableLogging = 1; // Set to 1 to enable logging, 0 to disable
 
+// Function to get the last modified timestamp of script.js
+function getLastModifiedTimestamp() {
+  return fetch('script.js')
+    .then((response) => response.headers.get('Last-Modified'))
+    .then((lastModified) => new Date(lastModified).toLocaleString());
+}
+
+// Function to set the last modified timestamp
+function setLastModifiedTimestamp() {
+  getLastModifiedTimestamp().then((timestamp) => {
+    const lastModifiedElement = document.getElementById('lastModified');
+    lastModifiedElement.textContent = `Last Modified: ${timestamp}`;
+  });
+}
+
+// Call setLastModifiedTimestamp to set the timestamp once
+setLastModifiedTimestamp();
+
 // Function to log messages and display them in the log area
 function log(message) {
   if (enableLogging) {
