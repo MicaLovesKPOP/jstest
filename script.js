@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
   const carInfoLines = carInfo.split("\n");
