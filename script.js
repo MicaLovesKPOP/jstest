@@ -155,7 +155,6 @@ function loadCarImage(imagePath, carDimensions) {
   });
 }
 
-
 let carInfoLogged = false; // Add this flag to track if car info has been logged
 
 // Function to draw the car
