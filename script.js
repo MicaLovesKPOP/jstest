@@ -198,12 +198,14 @@ carHeight *= heightScaleFactor;
 
 // Function to draw the car
 function drawCar() {
-  console.log("carX:", carX);
-  const scaledCarX = carX;
+  const scaledCarX = carX * widthScaleFactor;
   const scaledCarY = (canvas.height - carHeight) / 2;
   
-  ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
-  
+  console.log("Drawing car at X =", scaledCarX, "Y =", scaledCarY);
+
+  // Draw the car image on top of the red rectangle
+  ctx.drawImage(carImage, carX, scaledCarY, carWidth, carHeight);
+
   // Log car size and location only once
   if (!carInfoLogged) {
     log(`Car Location: X = ${scaledCarX}, Y = ${scaledCarY}`);
