@@ -60,7 +60,7 @@ function loadCarData(carFolder) {
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
   const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/sprite.svg`; // Use the direct URL
-    
+
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
     fetch(powerbandPath).then((response) => response.text()),
@@ -69,7 +69,6 @@ function loadCarData(carFolder) {
       // Parse carinfo.cfg and powerband.crv data here
       const parsedCarData = parseCarData(carInfo, powerband);
 
-      // Check that all data is available
       if (parsedCarData) {
         return { carData: parsedCarData, imagePath };
       } else {
@@ -120,7 +119,7 @@ function parseCarData(carInfo, powerband) {
       return [parseInt(rpm), parseFloat(torque)];
     });
 
-  return { ...carInfoData, powerband: powerbandData, dimensions: carDimensions };
+  return { ...carInfoData, powerband: powerbandData };
 }
 
 // Function to calculate torque based on RPM and powerband
