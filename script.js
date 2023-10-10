@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
   const carInfoLines = carInfo.split("\n");
   const powerbandLines = powerband.split("\n");
@@ -92,7 +91,13 @@ function parseCarData(carInfo, powerband) {
       return [parseInt(rpm), parseFloat(torque)];
     });
 
-  return { ...carInfoData, powerband: powerbandData };
+  const carDimensions = {
+    length: parseFloat(carInfoData["Vehicle Length"]),
+    width: parseFloat(carInfoData["Vehicle Width"]),
+    height: parseFloat(carInfoData["Vehicle Height"]),
+  };
+
+  return { ...carInfoData, powerband: powerbandData, dimensions: carDimensions };
 }
 
 // Function to calculate torque based on RPM and powerband
@@ -113,15 +118,22 @@ function calculateTorque(rpm) {
 // Create an Image object for the car sprite
 const carImage = new Image();
 
-// Function to load the car image
-function loadCarImage(imagePath) {
+function loadCarImage(imagePath, carDimensions) {
   return new Promise((resolve, reject) => {
     carImage.onload = () => {
       // Calculate the aspect ratio
       const aspectRatio = carImage.width / carImage.height;
 
-      // Calculate the scaled height
+      // Calculate the scaled height based on the car's dimensions
       carHeight = carWidth / aspectRatio;
+
+      // Calculate the scaling factor for width and height
+      const widthScaleFactor = carDimensions.width / carWidth;
+      const heightScaleFactor = carDimensions.height / carHeight;
+
+      // Apply the scaling factors to the car's width and height
+      carWidth *= widthScaleFactor;
+      carHeight *= heightScaleFactor;
 
       resolve();
     };
