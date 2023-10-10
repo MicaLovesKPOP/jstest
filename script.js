@@ -155,16 +155,19 @@ function loadCarImage(imagePath) {
 
       // Log car size in pixels
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
-      
-      // Calculate the scaling factors
-      const widthScaleFactor = carWidth / initialCanvasWidth;
-      const heightScaleFactor = carHeight / initialCanvasHeight;
-      
+
+      // Define a reference height for all vehicles (e.g., 100 pixels)
+      const referenceHeight = 100;
+
+      // Calculate the scaling factor based on the reference height and the original carHeight
+      const heightScaleFactor = referenceHeight / carHeight;
+      const widthScaleFactor = heightScaleFactor; // Maintain aspect ratio
+
       // Apply the scaling factors to the car's width and height
       carWidth *= widthScaleFactor;
       carHeight *= heightScaleFactor;
-      
-      // Log car size in pixels
+
+      // Log car size in pixels after scaling
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
       
       resolve();
