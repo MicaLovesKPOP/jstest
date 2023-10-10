@@ -144,16 +144,9 @@ function loadCarImage(imagePath, carDimensions) {
       // Calculate the aspect ratio
       const aspectRatio = carImage.width / carImage.height;
 
-      // Calculate the scaled height based on the car's dimensions
-      carHeight = carWidth / aspectRatio;
-
-      // Calculate the scaling factor for width and height
-      const widthScaleFactor = carDimensions.height / carHeight * 500;
-      const heightScaleFactor = carDimensions.width / carWidth * 500;
-
-      // Apply the scaling factors to the car's width and height
-      carWidth *= heightScaleFactor;
-      carHeight *= widthScaleFactor;
+      // Calculate the scaled width based on the car's dimensions
+      carWidth = carDimensions.length; // Set carWidth to car's length
+      carHeight = carWidth / aspectRatio; // Calculate height based on aspect ratio
 
       resolve();
     };
@@ -161,6 +154,7 @@ function loadCarImage(imagePath, carDimensions) {
     carImage.src = imagePath;
   });
 }
+
 
 let carInfoLogged = false; // Add this flag to track if car info has been logged
 
