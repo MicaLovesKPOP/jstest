@@ -25,7 +25,7 @@ function log(message) {
 }
 
 // Function to load car data from a car folder
-function loadCarData(carFolder) {
+function loadCarData(carFolder, callback) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
@@ -40,9 +40,9 @@ function loadCarData(carFolder) {
       // Parse carinfo.cfg, powerband.crv, and SVG image data here
       const parsedCarData = parseCarData(carInfo, powerband);
 
-      // Set carData only after successfully loading all data
+      // Check that all data is available
       if (parsedCarData && svgImage) {
-        carData = { ...parsedCarData, svgImage };
+        callback({ ...parsedCarData, svgImage }); // Call the callback with the loaded data
         log("Car data loaded successfully.");
       } else {
         log("Error loading car data: Some data is missing.");
@@ -52,6 +52,19 @@ function loadCarData(carFolder) {
       log(`Error loading car data for ${carFolder}: ${error}`);
     });
 }
+
+// Callback function to start the game when car data is loaded
+function startGameWhenCarDataLoaded(carData) {
+  // Set carData and start the game loop
+  window.carData = carData;
+  updateGameArea();
+}
+
+// Load car data and start the game when the document is ready
+document.addEventListener("DOMContentLoaded", () => {
+  loadCarData("sedan_001", startGameWhenCarDataLoaded);
+});
+
 
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
