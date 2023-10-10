@@ -2,8 +2,8 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 // Car properties
-let carWidth = 50;
-let carHeight = 80;
+let carWidth = 80;
+let carHeight = 50;
 let carSpeed = 5;
 
 let carData = null; // Will store the currently selected car's data
