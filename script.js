@@ -159,9 +159,10 @@ function loadCarImage(imagePath) {
       // Define a reference height for all vehicles (e.g., 100 pixels)
       const referenceHeight = 100;
 
-      // Calculate the scaling factor based on the reference height and the original carHeight
-      const heightScaleFactor = referenceHeight / carHeight;
-      const widthScaleFactor = heightScaleFactor; // Maintain aspect ratio
+      // Calculate the scaling factor based on the aspect ratio
+      const aspectRatio = carWidth / carHeight;
+      const heightScaleFactor = Math.sqrt(referenceHeight / aspectRatio);
+      const widthScaleFactor = heightScaleFactor * aspectRatio;
 
       // Apply the scaling factors to the car's width and height
       carWidth *= widthScaleFactor;
