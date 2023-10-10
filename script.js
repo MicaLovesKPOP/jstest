@@ -164,8 +164,8 @@ function loadCarImage(imagePath) {
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
       
       // Calculate the scaling factors
-      const widthScaleFactor = carWidth / initialCanvasWidth * 50;
-      const heightScaleFactor = carHeight / initialCanvasHeight * 50;
+      const widthScaleFactor = carWidth / initialCanvasWidth;
+      const heightScaleFactor = carHeight / initialCanvasHeight;
       
       // Apply the scaling factors to the car's width and height
       carWidth *= widthScaleFactor;
