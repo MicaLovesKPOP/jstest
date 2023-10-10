@@ -188,8 +188,8 @@ let carInfoLogged = false; // Add this flag to track if car info has been logged
 // Calculate scaling factors based on the initial canvas size
 const initialCanvasWidth = 800; // Set to your initial canvas width
 const initialCanvasHeight = 400; // Set to your initial canvas height
-const widthScaleFactor = canvas.width / initialCanvasWidth;
-const heightScaleFactor = canvas.height / initialCanvasHeight;
+const widthScaleFactor = canvas.width / initialCanvasWidth * 50;
+const heightScaleFactor = canvas.height / initialCanvasHeight * 50;
 
 // Apply the scaling factors to the car's width and height
 carWidth *= widthScaleFactor;
