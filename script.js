@@ -120,12 +120,6 @@ function parseCarData(carInfo, powerband) {
       return [parseInt(rpm), parseFloat(torque)];
     });
 
-  const carDimensions = {
-    length: parseFloat(carInfoData["Vehicle Length"]),
-    width: parseFloat(carInfoData["Vehicle Width"]),
-    height: parseFloat(carInfoData["Vehicle Height"]),
-  };
-
   return { ...carInfoData, powerband: powerbandData, dimensions: carDimensions };
 }
 
