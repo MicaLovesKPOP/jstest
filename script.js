@@ -157,8 +157,8 @@ function loadCarImage(imagePath) {
       log("Car Image Loaded");
       
       // Get the dimensions of the loaded image
-      carWidth = carImage.width;
-      carHeight = carImage.height;
+      carWidth = carImage.width * 50;
+      carHeight = carImage.height * 50;
 
       // Log car size in pixels
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
@@ -170,6 +170,9 @@ function loadCarImage(imagePath) {
       // Apply the scaling factors to the car's width and height
       carWidth *= widthScaleFactor;
       carHeight *= heightScaleFactor;
+      
+      // Log car size in pixels
+      log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
       
       resolve();
     };
