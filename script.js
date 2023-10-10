@@ -160,13 +160,18 @@ function loadCarImage(imagePath, carDimensions) {
   });
 }
 
+let carInfoLogged = false; // Add this flag to track if car info has been logged
+
 // Function to draw the car
 function drawCar() {
   ctx.drawImage(carImage, carX, canvas.height - carHeight, carWidth, carHeight);
 
-  // Log car size and location
-  log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
-  log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
+  // Log car size and location only once
+  if (!carInfoLogged) {
+    log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
+    log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
+    carInfoLogged = true; // Set the flag to true to prevent further logging
+  }
 }
 
 // Function to update the game area
