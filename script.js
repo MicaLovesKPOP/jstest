@@ -196,7 +196,7 @@ carHeight *= heightScaleFactor;
 // Function to draw the car
 function drawCar() {
   const scaledCarX = carX * widthScaleFactor;
-  const scaledCarY = (canvas.height - carHeight) * heightScaleFactor;
+  const scaledCarY = (canvas.height - carHeight) / 2;
   
   // Draw a red rectangle behind the car image
   ctx.fillStyle = "red";
