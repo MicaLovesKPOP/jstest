@@ -203,7 +203,7 @@ function drawCar() {
   ctx.fillRect(scaledCarX, scaledCarY, carWidth, carHeight);
 
   // Draw the car image on top of the red rectangle
-  ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
+  ctx.drawImage(carImage, carX, scaledCarY, carWidth, carHeight);
 
   // Log car size and location only once
   if (!carInfoLogged) {
