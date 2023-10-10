@@ -134,20 +134,16 @@ function calculateTorque(rpm) {
 const carImage = new Image();
 
 // Function to load the car image
-function loadCarImage() {
+function loadCarImage(imagePath) {
   return new Promise((resolve, reject) => {
-    if (carData && carData.pngImageBase64) {
-      carImage.onload = resolve;
-      carImage.onerror = reject;
-      carImage.src = imagePath;
-    } else {
-      reject('carData or carData.pngImageBase64 is null');
-    }
+    carImage.onload = resolve;
+    carImage.onerror = reject;
+    carImage.src = imagePath;
   });
 }
 
 // Call the loadCarImage function when initializing the game
-loadCarImage()
+loadCarImage(imagePath)
   .then(() => {
     console.log("SVG image loaded successfully");
     // Start the game loop
