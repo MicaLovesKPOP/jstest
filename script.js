@@ -147,29 +147,15 @@ function loadCarImage(imagePath) {
     const carImage = new Image();
 
     carImage.onload = () => {
-      // Log that the image has been loaded
       log("Car Image Loaded");
 
+      // You may need to adjust the scale factor based on your requirements
+      const scaleFactor = canvas.width / 800; // Adjust as needed
+
       // Get the dimensions of the loaded image
-      carWidth = carImage.width;
-      carHeight = carImage.height;
+      carWidth = carImage.width * scaleFactor;
+      carHeight = carImage.height * scaleFactor;
 
-      // Log the SVG content
-      log(`SVG Content:\n${carImage.outerHTML}`);
-
-      // Define a reference height for all vehicles (e.g., 100 pixels)
-      const referenceHeight = 100;
-
-      // Calculate the scaling factor based on the aspect ratio
-      const aspectRatio = carWidth / carHeight;
-      const heightScaleFactor = Math.sqrt(referenceHeight / aspectRatio);
-      const widthScaleFactor = heightScaleFactor * aspectRatio;
-
-      // Apply the scaling factors to the car's width and height
-      carWidth *= widthScaleFactor;
-      carHeight *= heightScaleFactor;
-
-      // Log car size in pixels after scaling
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
 
       resolve();
