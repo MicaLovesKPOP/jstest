@@ -26,30 +26,32 @@ function log(message) {
 
 // Function to load car data from a car folder
 function loadCarData(carFolder) {
-    log(`Loading car data from folder: ${carFolder}`);
-    const basePath = window.location.href.replace(/\/[^/]*$/, "/"); // Remove the HTML file name from the URL
-    const carInfoPath = `${basePath}vehicles/${carFolder}/carinfo.cfg`;
-    const powerbandPath = `${basePath}vehicles/${carFolder}/powerband.crv`;
-    const svgImagePath = `${basePath}vehicles/${carFolder}/sprite.svg`;
-  
-    Promise.all([
-      fetch(carInfoPath).then((response) => response.text()),
-      fetch(powerbandPath).then((response) => response.text()),
-      fetch(svgImagePath).then((response) => response.text()),
-    ])
-      .then(([carInfo, powerband, svgImage]) => {
-        // Parse carinfo.cfg, powerband.crv, and SVG image data here and set carData
-        carData = parseCarData(carInfo, powerband);
-        carData.svgImage = svgImage;
+  log(`Loading car data from folder: ${carFolder}`);
+  const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
+  const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
+  const svgImagePath = `vehicles/${carFolder}/sprite.svg`;
+
+  Promise.all([
+    fetch(carInfoPath).then((response) => response.text()),
+    fetch(powerbandPath).then((response) => response.text()),
+    fetch(svgImagePath).then((response) => response.text()),
+  ])
+    .then(([carInfo, powerband, svgImage]) => {
+      // Parse carinfo.cfg, powerband.crv, and SVG image data here
+      const parsedCarData = parseCarData(carInfo, powerband);
+
+      // Set carData only after successfully loading all data
+      if (parsedCarData && svgImage) {
+        carData = { ...parsedCarData, svgImage };
         log("Car data loaded successfully.");
-      })
-      .catch((error) => {
-        log(`Error loading car data for ${carFolder}: ${error}`);
-        log(`'carInfoPath' was expected to be at ${carInfoPath}`);
-        log(`'powerbandPath' was expected to be at ${powerbandPath}`);
-        log(`'svgImagePath' was expected to be at ${svgImagePath}`);
-      });
-  }
+      } else {
+        log("Error loading car data: Some data is missing.");
+      }
+    })
+    .catch((error) => {
+      log(`Error loading car data for ${carFolder}: ${error}`);
+    });
+}
 
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
