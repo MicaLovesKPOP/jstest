@@ -13,6 +13,7 @@ let raceFinished = false;
 let raceTime = 0;
 
 let enableLogging = 1; // Set to 1 to enable logging, 0 to disable
+
 // Function to resize the canvas based on the viewport size
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -189,6 +190,16 @@ function loadCarImage(imagePath) {
 }
 
 let carInfoLogged = false; // Add this flag to track if car info has been logged
+
+// Calculate scaling factors based on the initial canvas size
+const initialCanvasWidth = 800; // Set to your initial canvas width
+const initialCanvasHeight = 400; // Set to your initial canvas height
+const widthScaleFactor = canvas.width / initialCanvasWidth;
+const heightScaleFactor = canvas.height / initialCanvasHeight;
+
+// Apply the scaling factors to the car's width and height
+carWidth *= widthScaleFactor;
+carHeight *= heightScaleFactor;
 
 // Function to draw the car
 function drawCar() {
