@@ -7,7 +7,7 @@ let carHeight = 50;
 let carSpeed = 5;
 
 let carData = null; // Will store the currently selected car's data
-let carX = canvas.width * 0.5 - carWidth * 0.5 / widthScaleFactor;
+let carX = canvas.width / 2 - carWidth / 2;
 let raceStarted = false;
 let raceFinished = false;
 let raceTime = 0;
