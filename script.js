@@ -89,19 +89,10 @@ function calculateTorque(rpm) {
 
 // Function to draw the car
 function drawCar() {
-  if (carData && carData.svgImage) {
-    const image = new Image();
-    image.src = `data:image/svg+xml,${encodeURIComponent(carData.svgImage)}`;
-
-    image.onload = () => {
-      ctx.drawImage(image, carX, canvas.height - carHeight, carWidth, carHeight);
-    };
-  } else {
-    // Fallback to a rectangle if the SVG image is not available
-    ctx.fillStyle = "red";
-    ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
-  }
+  ctx.fillStyle = "blue"; // Set a color
+  ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
 }
+
 
 // Function to update the game area
 function updateGameArea() {
