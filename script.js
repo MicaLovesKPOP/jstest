@@ -74,15 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Function to load the car image
-function loadCarImage(imagePath) {
-  return new Promise((resolve, reject) => {
-    carImage.onload = resolve;
-    carImage.onerror = reject;
-    carImage.src = imagePath;
-  });
-}
-
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
   const carInfoLines = carInfo.split("\n");
