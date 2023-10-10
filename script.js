@@ -90,6 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.carData = carData;
         log('Car data loaded successfully.');
         // You can add any other game initialization or logic here
+        loadCarImage(imagePath)
+          .then(() => {
+            console.log("SVG image loaded successfully");
+            // Start the game loop
+            updateGameArea();
+          })
+          .catch((error) => {
+            console.error("Error loading SVG image:", error);
+          });
       }
     });
 });
