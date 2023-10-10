@@ -25,13 +25,13 @@ function log(message) {
 }
 
 // Function to load car data from a car folder
-function loadCarData(carFolder, callback) {
+function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
   const svgImagePath = `vehicles/${carFolder}/sprite.svg`;
 
-  Promise.all([
+  return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
     fetch(powerbandPath).then((response) => response.text()),
     fetch(svgImagePath).then((response) => response.text()),
@@ -42,28 +42,30 @@ function loadCarData(carFolder, callback) {
 
       // Check that all data is available
       if (parsedCarData && svgImage) {
-        callback({ ...parsedCarData, svgImage }); // Call the callback with the loaded data
-        log("Car data loaded successfully.");
+        return { ...parsedCarData, svgImage }; // Return the loaded data
       } else {
         log("Error loading car data: Some data is missing.");
+        return null;
       }
     })
     .catch((error) => {
       log(`Error loading car data for ${carFolder}: ${error}`);
+      return null;
     });
-}
-
-// Callback function to start the game when car data is loaded
-function startGameWhenCarDataLoaded(carData) {
-  // Set carData and start the game loop
-  window.carData = carData;
-  updateGameArea();
 }
 
 // Load car data and start the game when the document is ready
 document.addEventListener("DOMContentLoaded", () => {
-  loadCarData("sedan_001", startGameWhenCarDataLoaded);
+  loadCarData("sedan_001")
+    .then((carData) => {
+      if (carData) {
+        window.carData = carData;
+        log("Car data loaded successfully.");
+        updateGameArea();
+      }
+    });
 });
+
 
 
 
