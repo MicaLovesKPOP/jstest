@@ -151,8 +151,8 @@ function loadCarImage(imagePath) {
       log("Car Image Loaded");
       
       // Get the dimensions of the loaded image
-      carWidth = carImage.width * 50;
-      carHeight = carImage.height * 50;
+      carWidth = carImage.width;
+      carHeight = carImage.height;
 
       // Log car size in pixels
       log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
@@ -185,8 +185,8 @@ let carInfoLogged = false; // Add this flag to track if car info has been logged
 // Calculate scaling factors based on the initial canvas size
 const initialCanvasWidth = 800; // Set to your initial canvas width
 const initialCanvasHeight = 400; // Set to your initial canvas height
-const widthScaleFactor = canvas.width / initialCanvasWidth * 50;
-const heightScaleFactor = canvas.height / initialCanvasHeight * 50;
+const widthScaleFactor = canvas.width / initialCanvasWidth;
+const heightScaleFactor = canvas.height / initialCanvasHeight;
 
 // Apply the scaling factors to the car's width and height
 carWidth *= widthScaleFactor;
