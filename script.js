@@ -194,7 +194,7 @@ window.addEventListener("keydown", (e) => {
 });
 
 // Load initial car data (you can change the car folder as needed)
-loadCarData(`${carFolder}`);
+loadCarData(`sedan_001`);
 
 canvas.width = 800;
 canvas.height = 400;
