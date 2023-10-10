@@ -55,7 +55,7 @@ function loadCarData(carFolder) {
 
 // Load car data and start the game when the document is ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadCarData(`${carFolder}`) // Try with 'sports_001' or 'sedan_001'
+  loadCarData('sedan_001') // Try with 'sports_001' or 'sedan_001'
     .then(({ carData, imagePath }) => {
       if (carData) {
         window.carData = carData;
@@ -92,7 +92,7 @@ function parseCarData(carInfo, powerband) {
       return [parseInt(rpm), parseFloat(torque)];
     });
 
-  return { ...carInfoData, powerband: powerbandData, pngImageBase64: 'your_base64_string_here' };
+  return { ...carInfoData, powerband: powerbandData };
 }
 
 // Function to calculate torque based on RPM and powerband
@@ -122,22 +122,10 @@ function loadCarImage(imagePath) {
   });
 }
 
-// Call the loadCarImage function when initializing the game
-loadCarImage(imagePath)
-  .then(() => {
-    console.log("SVG image loaded successfully");
-    // Start the game loop
-    updateGameArea();
-  })
-  .catch((error) => {
-    console.error("Error loading SVG image:", error);
-  });
-
 // Function to draw the car
 function drawCar() {
   ctx.drawImage(carImage, carX, canvas.height - carHeight, carWidth, carHeight);
 }
-
 
 // Function to update the game area
 function updateGameArea() {
@@ -175,6 +163,7 @@ function updateGameArea() {
     ctx.fillText("Race Time: " + raceTime.toFixed(2) + " seconds", 100, 100);
   }
 
+  requestAnimationFrame(updateGameArea
   requestAnimationFrame(updateGameArea);
 }
 
