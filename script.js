@@ -7,7 +7,8 @@ let carHeight = 50;
 let carSpeed = 5;
 
 let carData = null; // Will store the currently selected car's data
-let carX = canvas.width / 2 - carWidth / 2;
+const carXPercentage = 10; // Set the percentage from the left
+let carX = (canvas.width * carXPercentage) / 100;
 let raceStarted = false;
 let raceFinished = false;
 let raceTime = 0;
