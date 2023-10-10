@@ -181,7 +181,11 @@ let carInfoLogged = false; // Add this flag to track if car info has been logged
 
 // Function to draw the car
 function drawCar() {
-  ctx.drawImage(carImage, carX, canvas.height - carHeight, carWidth, carHeight);
+  const scaledCarX = carX * widthScaleFactor;
+  const scaledCarY = (canvas.height - carHeight) * heightScaleFactor;
+  ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
+}
+
 
   // Log car size and location only once
   if (!carInfoLogged) {
