@@ -152,8 +152,8 @@ function loadCarImage(imagePath, carDimensions) {
       const heightScaleFactor = carDimensions.width / carWidth * 500;
 
       // Apply the scaling factors to the car's width and height
-      carWidth *= widthScaleFactor;
-      carHeight *= heightScaleFactor;
+      carWidth *= heightScaleFactor;
+      carHeight *= widthScaleFactor;
 
       resolve();
     };
