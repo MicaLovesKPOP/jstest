@@ -150,16 +150,12 @@ function loadCarImage(imagePath) {
       // Log that the image has been loaded
       log("Car Image Loaded");
 
-      // Log the image dimensions
-      log(`Image Width: ${carImage.width}`);
-      log(`Image Height: ${carImage.height}`);
-
-      // Log the SVG content (you can log the entire SVG string)
-      log(`SVG Content: ${carImage.outerHTML}`);
-
       // Get the dimensions of the loaded image
       carWidth = carImage.width;
       carHeight = carImage.height;
+
+      // Log the SVG content
+      log(`SVG Content:\n${carImage.outerHTML}`);
 
       // Define a reference height for all vehicles (e.g., 100 pixels)
       const referenceHeight = 100;
