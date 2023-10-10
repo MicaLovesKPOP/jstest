@@ -14,6 +14,13 @@ let raceTime = 0;
 
 let enableLogging = 1; // Set to 1 to enable logging, 0 to disable
 
+// Function to get the last modified timestamp of script.js
+function getLastModifiedTimestamp() {
+  return fetch('script.js')
+    .then((response) => response.headers.get('Last-Modified'))
+    .then((lastModified) => new Date(lastModified).toLocaleString());
+}
+
 // Function to log messages and display them in the log area
 function log(message) {
   if (enableLogging) {
