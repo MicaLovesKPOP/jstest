@@ -29,8 +29,8 @@ function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
-  const imagePath = `vehicles/${carFolder}/test.png`; // Update to the PNG image path
-
+  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/sprite.svg`; // Use the direct URL
+    
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
     fetch(powerbandPath).then((response) => response.text()),
@@ -49,7 +49,7 @@ function loadCarData(carFolder) {
     })
     .then((carData) => {
       if (carData) {
-        // Create an Image object for the PNG image and load it
+        // Create an Image object for the SVG image and load it
         const image = new Image();
 
         // Handle the image load event
@@ -67,7 +67,7 @@ function loadCarData(carFolder) {
           log(`Error loading image: ${error}`); // Update the log message
         };
 
-        // Set the image source to load the PNG image
+        // Set the image source to load the SVG image
         image.src = imagePath;
 
         // Return the loaded car data
