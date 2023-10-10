@@ -29,7 +29,7 @@ function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
-  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/test.png`; // Use the direct URL
+  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/sprite.svg`; // Use the direct URL
     
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
@@ -139,7 +139,7 @@ function loadCarImage() {
     if (carData && carData.pngImageBase64) {
       carImage.onload = resolve;
       carImage.onerror = reject;
-      carImage.src = `data:image/png;base64,${carData.pngImageBase64}`;
+      carImage.src = imagePath;
     } else {
       reject('carData or carData.pngImageBase64 is null');
     }
