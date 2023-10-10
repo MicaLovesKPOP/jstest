@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (carData) {
         window.carData = carData;
         log('Car data loaded successfully.');
-        updateGameArea();
+        // You can add any other game initialization or logic here
       }
     });
 });
