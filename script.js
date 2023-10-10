@@ -29,7 +29,7 @@ function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
-  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/sprite.svg`; // Use the direct URL
+  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/test.svg`; // Use the direct URL
     
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
@@ -41,38 +41,9 @@ function loadCarData(carFolder) {
 
       // Check that all data is available
       if (parsedCarData) {
-        return parsedCarData;
+        return { carData: parsedCarData, imagePath };
       } else {
         log("Error loading car data: Some data is missing.");
-        return null;
-      }
-    })
-    .then((carData) => {
-      if (carData) {
-        // Create an Image object for the SVG image and load it
-        const image = new Image();
-
-        // Handle the image load event
-        image.onload = () => {
-          // Display the loaded image on the canvas (replace 'canvas' with your canvas element)
-          const canvas = document.getElementById('canvas');
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(image, 0, 0);
-
-          log('Image loaded successfully.'); // Update the log message
-        };
-
-        // Handle any errors
-        image.onerror = (error) => {
-          log(`Error loading image: ${error}`); // Update the log message
-        };
-
-        // Set the image source to load the SVG image
-        image.src = imagePath;
-
-        // Return the loaded car data
-        return carData;
-      } else {
         return null;
       }
     })
@@ -85,7 +56,7 @@ function loadCarData(carFolder) {
 // Load car data and start the game when the document is ready
 document.addEventListener('DOMContentLoaded', () => {
   loadCarData('sedan_001') // Try with 'sports_001' or 'sedan_001'
-    .then((carData) => {
+    .then(({ carData, imagePath }) => {
       if (carData) {
         window.carData = carData;
         log('Car data loaded successfully.');
@@ -102,6 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 });
+
+// Function to load the car image
+function loadCarImage(imagePath) {
+  return new Promise((resolve, reject) => {
+    carImage.onload = resolve;
+    carImage.onerror = reject;
+    carImage.src = imagePath;
+  });
+}
 
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
