@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 const svgImage = new Image();
 
 // Set the source of the image to your SVG file
-svgImage.src = `https://micaloveskpop.github.io/jstest/vehicles/${carFolder}/sprite.svg`;
+svgImage.src = `https://micaloveskpop.github.io/jstest/vehicles/sedan_001/sprite.svg`;
 
 // Add an event listener to handle the image load
 svgImage.onload = function () {
