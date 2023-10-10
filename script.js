@@ -201,6 +201,9 @@ function drawCar() {
   const scaledCarX = carX * widthScaleFactor;
   const scaledCarY = (canvas.height - carHeight) / 2;
 
+  // Log the scaled dimensions for debugging
+  log(`Scaled Width: ${carWidth}, Scaled Height: ${carHeight}`);
+
   // Draw the car image on top of the red rectangle
   ctx.drawImage(carImage, scaledCarX, scaledCarY, carWidth, carHeight);
 
