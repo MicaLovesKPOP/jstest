@@ -55,16 +55,14 @@ function loadCarData(carFolder) {
 
 // Load car data and start the game when the document is ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadCarData(`${carFolder}`) // Try with 'sports_001' or 'sedan_001'
+  loadCarData('sedan_001')
     .then(({ carData, imagePath }) => {
       if (carData) {
         window.carData = carData;
         log('Car data loaded successfully.');
-        // You can add any other game initialization or logic here
-        loadCarImage(imagePath)
+        loadCarImage(imagePath, carData.dimensions)
           .then(() => {
             console.log("SVG image loaded successfully");
-            // Start the game loop
             updateGameArea();
           })
           .catch((error) => {
