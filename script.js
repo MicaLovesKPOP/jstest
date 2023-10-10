@@ -29,7 +29,7 @@ function loadCarData(carFolder) {
   log(`Loading car data from folder: ${carFolder}`);
   const carInfoPath = `vehicles/${carFolder}/carinfo.cfg`;
   const powerbandPath = `vehicles/${carFolder}/powerband.crv`;
-  const imagePath = `https://micaloveskpop.github.io/jstest/vehicles/sedan_001/sprite.svg`; // Update to the PNG image path
+  const imagePath = `vehicles/${carFolder}/test.png`; // Update to the PNG image path
 
   return Promise.all([
     fetch(carInfoPath).then((response) => response.text()),
