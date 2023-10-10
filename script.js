@@ -84,7 +84,7 @@ function loadCarData(carFolder) {
 
 // Load car data and start the game when the document is ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadCarData('sports_001') // Try with 'sports_001' or 'sedan_001'
+  loadCarData('sedan_001') // Try with 'sports_001' or 'sedan_001'
     .then((carData) => {
       if (carData) {
         window.carData = carData;
