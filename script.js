@@ -138,7 +138,7 @@ function loadCarImage() {
   return new Promise((resolve, reject) => {
     carImage.onload = resolve;
     carImage.onerror = reject;
-    carImage.src = `data:image/svg+xml,${encodeURIComponent(carData.svgImage)}`;
+    carImage.src = `data:image/png;base64,${carData.pngImageBase64}`;
   });
 }
 
