@@ -150,41 +150,35 @@ const carImage = new Image();
 // Function to load the car image and extract dimensions from the SVG
 function loadCarImage(imagePath) {
   return new Promise((resolve, reject) => {
+    const carImage = new Image();
+    
     carImage.onload = () => {
-      // Parse the SVG content to get the width and height
-      const parser = new DOMParser();
-      const svgDocument = parser.parseFromString(carImage.contentDocument.documentElement.outerHTML, 'image/svg+xml');
-      const svgElement = svgDocument.querySelector('svg');
+      // Log that the image has been loaded
+      log("Car Image Loaded");
+      
+      // Get the dimensions of the loaded image
+      const carWidth = carImage.width;
+      const carHeight = carImage.height;
 
-      if (svgElement) {
-        // Get the width and height attributes from the SVG
-        const carWidthStr = svgElement.getAttribute('width');
-        const carHeightStr = svgElement.getAttribute('height');
-
-        // Convert the width and height to meters (assuming SVG units are meters)
-        const carWidthMeters = parseFloat(carWidthStr);
-        const carHeightMeters = parseFloat(carHeightStr);
-
-        // Log car size in meters
-        log(`Car Size: Width = ${carWidthMeters} meters, Height = ${carHeightMeters} meters`);
-
-        // Calculate the scaling factor (assuming 1 meter in the game is equivalent to 1 pixel)
-        const scaleFactor = 1;
-
-        // Apply the scaling factor to the car's width and height
-        carWidth = carWidthMeters * scaleFactor;
-        carHeight = carHeightMeters * scaleFactor;
-
-        resolve();
-      } else {
-        log("Error: SVG element not found in the loaded image.");
-        reject();
-      }
+      // Log car size in pixels
+      log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
+      
+      // Calculate the scaling factors
+      const widthScaleFactor = carWidth / initialCanvasWidth;
+      const heightScaleFactor = carHeight / initialCanvasHeight;
+      
+      // Apply the scaling factors to the car's width and height
+      carWidth *= widthScaleFactor;
+      carHeight *= heightScaleFactor;
+      
+      resolve();
     };
+    
     carImage.onerror = () => {
       log("Error: Failed to load the SVG image.");
       reject();
     };
+    
     carImage.src = imagePath;
   });
 }
