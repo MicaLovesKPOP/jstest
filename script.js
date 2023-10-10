@@ -199,7 +199,7 @@ function drawCar() {
   const scaledCarY = (canvas.height - carHeight) / 2;
   
   // Draw a red rectangle behind the car image
-  ctx.fillStyle = "red";//
+  ctx.fillStyle = "red";
   ctx.fillRect(scaledCarX, scaledCarY, carWidth, carHeight);
 
   // Draw the car image on top of the red rectangle
