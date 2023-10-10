@@ -42,7 +42,11 @@ function loadCarData(carFolder) {
 
       // Check that all data is available
       if (parsedCarData && svgImage) {
-        return { ...parsedCarData, svgImage }; // Return the loaded data
+        const carImage = new Image();
+        carImage.src = `data:image/svg+xml,${encodeURIComponent(svgImage)}`;
+
+        // Return the loaded data and image
+        return { ...parsedCarData, carImage };
       } else {
         log("Error loading car data: Some data is missing.");
         return null;
@@ -65,9 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 });
-
-
-
 
 // Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
