@@ -94,8 +94,10 @@ function drawCar() {
     image.src = `data:image/svg+xml,${encodeURIComponent(carData.svgImage)}`;
 
     image.onload = () => {
+      console.log("SVG image loaded successfully");
       ctx.drawImage(image, carX, canvas.height - carHeight, carWidth, carHeight);
     };
+    
   } else {
     // Fallback to a rectangle if the SVG image is not available
     ctx.fillStyle = "red";
