@@ -206,6 +206,7 @@ function drawCar() {
   // Log car size and location only once
   if (!carInfoLogged) {
     log(`Car Location: X = ${scaledCarX}, Y = ${scaledCarY}`);
+    log(`CarX: ${CarX}`);
     carInfoLogged = true; // Set the flag to true to prevent further logging
   }
 }
