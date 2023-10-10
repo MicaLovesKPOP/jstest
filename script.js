@@ -163,6 +163,10 @@ function loadCarImage(imagePath, carDimensions) {
 // Function to draw the car
 function drawCar() {
   ctx.drawImage(carImage, carX, canvas.height - carHeight, carWidth, carHeight);
+
+  // Log car size and location
+  log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
+  log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
 }
 
 // Function to update the game area
