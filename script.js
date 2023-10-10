@@ -153,9 +153,6 @@ function loadCarImage(imagePath) {
       carWidth = carImage.width;
       carHeight = carImage.height;
 
-      // Log car size in pixels
-      log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
-
       // Define a reference height for all vehicles (e.g., 100 pixels)
       const referenceHeight = 100;
 
