@@ -139,6 +139,8 @@ const carImage = new Image();
 function loadCarImage(imagePath, carDimensions) {
   return new Promise((resolve, reject) => {
     carImage.onload = () => {
+      // Log that the image has been loaded
+      log("Car Image Loaded");
       // Calculate the aspect ratio
       const aspectRatio = carImage.width / carImage.height;
 
