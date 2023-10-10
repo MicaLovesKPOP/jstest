@@ -164,7 +164,7 @@ function drawCar() {
 
   // Log car size and location only once
   if (!carInfoLogged) {
-    log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
+    //log(`Car Size: Width = ${carWidth}, Height = ${carHeight}`);
     log(`Car Location: X = ${carX}, Y = ${canvas.height - carHeight}`);
     carInfoLogged = true; // Set the flag to true to prevent further logging
   }
