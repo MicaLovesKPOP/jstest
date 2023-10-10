@@ -163,7 +163,6 @@ function updateGameArea() {
     ctx.fillText("Race Time: " + raceTime.toFixed(2) + " seconds", 100, 100);
   }
 
-  requestAnimationFrame(updateGameArea
   requestAnimationFrame(updateGameArea);
 }
 
