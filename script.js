@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Function to parse carinfo.cfg and powerband.crv data
 function parseCarData(carInfo, powerband) {
   const carInfoLines = carInfo.split("\n");
   const powerbandLines = powerband.split("\n");
@@ -118,6 +119,7 @@ function calculateTorque(rpm) {
 // Create an Image object for the car sprite
 const carImage = new Image();
 
+// Function to load the car image
 function loadCarImage(imagePath, carDimensions) {
   return new Promise((resolve, reject) => {
     carImage.onload = () => {
